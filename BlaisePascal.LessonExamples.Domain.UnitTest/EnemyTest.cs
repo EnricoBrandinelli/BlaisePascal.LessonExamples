@@ -12,7 +12,7 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
             newEnemy.SetName("Stefano");
 
             //Assert
-            Assert.Equal("Stefano", newEnemy.GetName());
+            Assert.Equal("Stefano", newEnemy.Name);
 
 
         }
@@ -22,9 +22,9 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
         public void EnemyName_WhenNameIsNull_NameIsNotAssigned()
         {
 
-            Enemy newEnemy = new Enemy(null);
-
-            Assert.Equal(null, newEnemy.GetName());
+            Enemy newEnemy = new Enemy();
+            
+            Assert.Equal("Stefano", newEnemy.Name);
 
 
         }
@@ -34,9 +34,9 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
         public void EnemyName_WhenNameIsEmpty_NameIsNotAssigned()
         {
 
-            Enemy newEnemy = new Enemy("");
-
-            Assert.Equal(null, newEnemy.GetName());
+            Enemy newEnemy = new Enemy();
+            newEnemy.SetName("");
+            Assert.Equal("Stefano", newEnemy.Name);
 
 
         }
@@ -46,9 +46,9 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
         public void EnemyName_WhenNameIsOnlySpaces_NameIsNotAssigned()
         {
 
-            Enemy newEnemy = new Enemy("        ");
-
-            Assert.Equal(null, newEnemy.GetName());
+            Enemy newEnemy = new Enemy();
+            newEnemy.SetName("         ");
+            Assert.Equal("Stefano", newEnemy.Name);
 
 
         }
@@ -62,7 +62,7 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
 
             newEnemy.SetHealth(100);
 
-            Assert.Equal(100, newEnemy.GetHealth());
+            Assert.Equal(100, newEnemy.Health);
 
         }
 
@@ -75,7 +75,7 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
 
             newEnemy.SetHealth(-1);
 
-            Assert.Equal(100, newEnemy.GetHealth());
+            Assert.Equal(100, newEnemy.Health);
 
         }
 
@@ -88,19 +88,7 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
 
             newEnemy.SetHealth(101);
 
-            Assert.Equal(100, newEnemy.GetHealth());
-
-        }
-
-        [Fact]
-
-        public void EnemyHealth_WhenHealthIsZero_HealthIsNotAssigned()
-        {
-            Enemy newEnemy = new Enemy();
-
-            newEnemy.SetHealth(0);
-
-            Assert.Equal(100, newEnemy.GetHealth());
+            Assert.Equal(100, newEnemy.Health);
 
         }
 

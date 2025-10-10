@@ -35,7 +35,7 @@
             IsAlive = isAlive;
         }
 
-        private void SetHealth(int newHealth)
+        public void SetHealth(int newHealth)
         {
             if (int.IsPositive(newHealth) && newHealth <= 100)
             {
@@ -43,7 +43,7 @@
             }
         }
 
-        private void SetName(string newName)
+        public void SetName(string newName)
         {
             if (!string.IsNullOrWhiteSpace(newName.Trim()))
             {
