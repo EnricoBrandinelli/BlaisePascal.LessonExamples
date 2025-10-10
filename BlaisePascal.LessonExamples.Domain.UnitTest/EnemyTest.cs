@@ -92,6 +92,18 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
 
         }
 
+        [Fact]
+
+        public void EnemyHealth_WhenHealthIsZero_HealthIsNotAssigned()
+        {
+            Enemy newEnemy = new Enemy();
+
+            newEnemy.SetHealth(0);
+
+            Assert.Equal(100, newEnemy.GetHealth());
+
+        }
+
 
     }
 

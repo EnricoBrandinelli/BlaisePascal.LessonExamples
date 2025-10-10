@@ -3,60 +3,47 @@
     public class Enemy
     {
 
-        private string _name;
-        private string _description;
-        private int _health;
-        private bool _isAlive;
 
+        public int Health { get; private set; }
+        public string Name { get; private set; } 
+        public string Description { get; private set; }
+
+        public bool isAlive { get; private set; }
+        
 
         //Overloading del costruttore, serve a qualcosa
         public Enemy() 
         {
 
-            _name = "Stefano";
-            _health = 100;
+            Name = "Stefano";
+            Health = 100;
             
         }
 
 
         public Enemy(string name)
         {
-
-            SetName(name);
+            Name = name;
+           
         }
 
 
         public Enemy(string name, int health)
         {
-            SetName(name);
-            SetHealth(health);
+           Name = name;
+            Health = health;
         }
 
-
-        public void SetName(string newName)
+        private void TakeDamage(int damage)
         {
-            if (newName != null && newName.Trim() != "")
+
+            if (int.IsPositive(damage) && Health - damage > 0)
             {
-
-                _name = newName;
-
+                Health -= damage;
             }
 
         }
-
-
-        public void SetHealth(int newHealth)
-        {
-            if (newHealth > 0 && newHealth <= 100)
-            {
-                _health = newHealth;
-            }
-
-
-        }
-
-        public string GetName() => _name;
-        public int GetHealth() => _health;
+       
 
 
     }
