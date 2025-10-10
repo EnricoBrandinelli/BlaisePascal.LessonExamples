@@ -9,7 +9,7 @@
         private bool _isAlive;
 
 
-        //Overloading del costruttore
+        //Overloading del costruttore, serve a qualcosa
         public Enemy() { }
 
 
