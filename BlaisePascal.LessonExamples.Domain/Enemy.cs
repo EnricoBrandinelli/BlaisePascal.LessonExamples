@@ -10,7 +10,13 @@
 
 
         //Overloading del costruttore, serve a qualcosa
-        public Enemy() { }
+        public Enemy() 
+        {
+
+            _name = "Stefano";
+            _health = 100;
+            
+        }
 
 
         public Enemy(string name)
