@@ -41,6 +41,11 @@
             {
                 Health = newHealth;
             }
+            if(newHealth == 0)
+            {
+                IsAlive = false;
+            }
+
         }
 
         public void SetName(string newName)
