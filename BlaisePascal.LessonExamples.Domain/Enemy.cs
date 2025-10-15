@@ -10,9 +10,7 @@
 
         public bool IsAlive => Health > 0;
 
-        private const int MaxHealth = 100;
-
-        private const int MinHealth = 0;
+       
 
         //Overloading del costruttore, serve a qualcosa
         public Enemy() 
@@ -40,7 +38,7 @@
 
         public void SetHealth(int newHealth)
         {
-            if (int.IsPositive(newHealth) && newHealth <= 100)
+            if (int.IsPositive(newHealth) && newHealth <= CharacterValidator.MaxHealth)
             {
                 Health = newHealth;
             }
@@ -60,7 +58,7 @@
             if (damage < 0)
                 throw new ArgumentException("Damage cannot be negative");
 
-            Health = Math.Max(Health - damage, MinHealth);           
+            Health = Math.Max(Health - damage, CharacterValidator.MinHealth);           
         }
 
         public void Heal(int amount)
@@ -68,7 +66,7 @@
             if (amount < 0 || IsAlive == false)
                 throw new ArgumentException("Enemy cannot be healed");
 
-            Health = Math.Min(Health + amount, MaxHealth);
+            Health = Math.Min(Health + amount, CharacterValidator.MaxHealth);
         }
        
 

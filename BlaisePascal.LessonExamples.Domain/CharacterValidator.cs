@@ -6,9 +6,21 @@ using System.Threading.Tasks;
 
 namespace BlaisePascal.LessonExamples.Domain
 {
-    internal class CharacterValidator
+    public static class CharacterValidator
     {
 
+        public const int MaxHealth = 100;
 
+        public const int MinHealth = 0;
+        public static string ValidateName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name.Trim()))
+                throw new ArgumentException("Name cannot be null or empty");
+            
+            return name;
+
+        }
+
+        //TO DO: Add ValidateHealth method
     }
 }
