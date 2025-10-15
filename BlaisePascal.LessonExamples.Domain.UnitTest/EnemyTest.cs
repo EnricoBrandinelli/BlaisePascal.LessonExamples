@@ -90,7 +90,52 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
 
             Assert.Equal(100, newEnemy.Health);
 
+        }   
+
+        [Fact]
+
+        public void TakeDamge_WhenDamageIs0_HealthRemainsTheSame()
+        {
+            Enemy newEnemy = new Enemy();
+
+            newEnemy.TakeDamage(0);
+
+            Assert.Equal(100, newEnemy.Health);
+
         }
+
+        [Fact]
+
+        public void TakeDamge_WhenDamageIs10_HealthGoesDownTo90()
+        {
+            Enemy newEnemy = new Enemy();
+
+            newEnemy.TakeDamage(10);
+
+            Assert.Equal(90, newEnemy.Health);
+
+        }
+
+        [Fact]
+
+        public void TakeDamge_WhenDamageIsHigherThanHealth_EnemyDies()
+        {
+            Enemy newEnemy = new Enemy();
+
+            newEnemy.TakeDamage(101);
+
+            Assert.Equal(0, newEnemy.Health);
+            Assert.False(newEnemy.IsAlive);
+
+        }
+
+     
+
+
+
+
+
+
 
 
     }

@@ -1,6 +1,5 @@
 ﻿namespace BlaisePascal.LessonExamples.Domain
 {
-    //commit test
     public class Enemy
     {
 
@@ -9,8 +8,11 @@
         public string Name { get; private set; } 
         public string Description { get; private set; }
 
-        public bool IsAlive { get; private set; }
-        
+        public bool IsAlive => Health > 0;
+
+        private const int MaxHealth = 100;
+
+        private const int MinHealth = 0;
 
         //Overloading del costruttore, serve a qualcosa
         public Enemy() 
@@ -18,22 +20,22 @@
 
             Name = "Stefano";
             Health = 100;
-            IsAlive = true;
+           
         }
 
 
-        public Enemy(string name, bool isAlive)
+        public Enemy(string name)
         {
             SetName(name);
-           IsAlive = isAlive;
+           
         }
 
 
-        public Enemy(string name, int health, bool isAlive)
+        public Enemy(string name, int health)
         {
             SetName(name);
             SetHealth(health);
-            IsAlive = isAlive;
+            
         }
 
         public void SetHealth(int newHealth)
@@ -41,10 +43,6 @@
             if (int.IsPositive(newHealth) && newHealth <= 100)
             {
                 Health = newHealth;
-            }
-            if(newHealth == 0)
-            {
-                IsAlive = false;
             }
 
         }
@@ -57,21 +55,20 @@
             }
 
         }
-        private void TakeDamage(int damage)
+        public void TakeDamage(int damage)
         {
-            if (int.IsNegative(damage))
-                throw new ArgumentOutOfRangeException("Damage cannot be negative");
+            if (damage < 0)
+                throw new ArgumentException("Damage cannot be negative");
 
-            if (damage < Health && IsAlive == true)
-            {
-                Health -= damage;
-            }
-            else 
-            {
-                Health = 0;
-                IsAlive = false;
-            }
-            
+            Health = Math.Max(Health - damage, MinHealth);           
+        }
+
+        public void Heal(int amount)
+        {
+            if (amount < 0 || IsAlive == false)
+                throw new ArgumentException("Enemy cannot be healed");
+
+            Health = Math.Min(Health + amount, MaxHealth);
         }
        
 
