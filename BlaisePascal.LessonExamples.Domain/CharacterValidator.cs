@@ -22,5 +22,14 @@ namespace BlaisePascal.LessonExamples.Domain
         }
 
         //TO DO: Add ValidateHealth method
+
+        public static int ValidateHealth(int health)
+        {
+
+            if (health < MinHealth || health > MaxHealth)
+                throw new ArgumentException("Health cannot be lower than MinHealth or higher than MaxHealth");
+
+            return health;
+        }
     }
 }

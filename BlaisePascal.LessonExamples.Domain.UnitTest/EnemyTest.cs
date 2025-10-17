@@ -5,92 +5,40 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
         [Fact]
         public void EnemyName_WhenTheNameIsValid_TheNameMustBeAssignedCorrectly()
         {
-            //Arrange
-            Enemy newEnemy = new Enemy();
 
-            //Act
-            newEnemy.SetName("Stefano");
+            Enemy newEnemy = new Enemy("Stefano");
 
-            //Assert
-            Assert.Equal("Stefano", newEnemy.Name);
-
-
-        }
-
-        [Fact]
-
-        public void EnemyName_WhenNameIsNull_NameIsNotAssigned()
-        {
-
-            Enemy newEnemy = new Enemy();
             
             Assert.Equal("Stefano", newEnemy.Name);
 
 
         }
 
-        [Fact]
-
-        public void EnemyName_WhenNameIsEmpty_NameIsNotAssigned()
-        {
-
-            Enemy newEnemy = new Enemy();
-            newEnemy.SetName("");
-            Assert.Equal("Stefano", newEnemy.Name);
-
-
-        }
-
-        [Fact]
-
-        public void EnemyName_WhenNameIsOnlySpaces_NameIsNotAssigned()
-        {
-
-            Enemy newEnemy = new Enemy();
-            newEnemy.SetName("         ");
-            Assert.Equal("Stefano", newEnemy.Name);
-
-
-        }
 
 
         [Fact]
 
         public void EnemyHealth_WhenHealthIsValid_HealthIsAssignedCorrectly()
         {
-            Enemy newEnemy = new Enemy();
+            Enemy newEnemy = new Enemy("Stefano", 100);
 
-            newEnemy.SetHealth(100);
-
-            Assert.Equal(100, newEnemy.Health);
-
-        }
-
-
-        [Fact]
-
-        public void EnemyHealth_WhenHealthIsNegative_HealthIsNotAssigned()
-        {
-            Enemy newEnemy = new Enemy();
-
-            newEnemy.SetHealth(-1);
+            
 
             Assert.Equal(100, newEnemy.Health);
 
         }
 
-
         [Fact]
 
-        public void EnemyHealth_WhenHealthIsOver100_HealthIsNotAssigned()
+        public void TakeDamge_WhenDamageIsNegative_ShouldThrowArgumentException()
         {
             Enemy newEnemy = new Enemy();
 
-            newEnemy.SetHealth(101);
+            int damage = -1;
 
-            Assert.Equal(100, newEnemy.Health);
+            Assert.Throws<ArgumentException>(() => newEnemy.TakeDamage(damage));
 
-        }   
+        }
 
         [Fact]
 
@@ -106,7 +54,7 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
 
         [Fact]
 
-        public void TakeDamge_WhenDamageIs10_HealthGoesDownTo90()
+        public void TakeDamage_WhenDamageIs10_HealthGoesDownTo90()
         {
             Enemy newEnemy = new Enemy();
 
@@ -118,7 +66,7 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
 
         [Fact]
 
-        public void TakeDamge_WhenDamageIsHigherThanHealth_EnemyDies()
+        public void TakeDamage_WhenDamageIsHigherThanHealth_EnemyDies()
         {
             Enemy newEnemy = new Enemy();
 
@@ -128,6 +76,8 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
             Assert.False(newEnemy.IsAlive);
 
         }
+
+        
 
      
 

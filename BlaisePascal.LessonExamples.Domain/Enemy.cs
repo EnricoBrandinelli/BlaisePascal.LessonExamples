@@ -1,4 +1,6 @@
-﻿namespace BlaisePascal.LessonExamples.Domain
+﻿using System.Xml.Linq;
+
+namespace BlaisePascal.LessonExamples.Domain
 {
     public class Enemy
     {
@@ -18,39 +20,33 @@
 
             Name = "Stefano";
             Health = 100;
-           
         }
 
 
         public Enemy(string name)
         {
-            SetName(name);
-           
+            Name = CharacterValidator.ValidateName(name);
+
+
         }
 
 
         public Enemy(string name, int health)
         {
-            SetName(name);
-            SetHealth(health);
+            Name = CharacterValidator.ValidateName(name);
+            Health = CharacterValidator.ValidateHealth(health);
             
         }
 
         public void SetHealth(int newHealth)
         {
-            if (int.IsPositive(newHealth) && newHealth <= CharacterValidator.MaxHealth)
-            {
-                Health = newHealth;
-            }
+            Health = CharacterValidator.ValidateHealth(newHealth);
 
         }
 
-        public void SetName(string newName)
+        public void ReName(string newName)
         {
-            if (!string.IsNullOrWhiteSpace(newName.Trim()))
-            {
-                Name = newName;
-            }
+            Name = CharacterValidator.ValidateName(newName);
 
         }
         public void TakeDamage(int damage)
