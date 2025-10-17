@@ -20,7 +20,7 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
 
         public void EnemyHealth_WhenHealthIsValid_HealthIsAssignedCorrectly()
         {
-            Enemy newEnemy = new Enemy("Stefano", 100);
+            Enemy newEnemy = new Enemy("Stefano", CharacterValidator.MaxHealth);
 
             
 
@@ -32,7 +32,7 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
 
         public void TakeDamge_WhenDamageIsNegative_ShouldThrowArgumentException()
         {
-            Enemy newEnemy = new Enemy();
+            Enemy newEnemy = new Enemy("Stefano", CharacterValidator.MaxHealth);
 
             int damage = -1;
 
@@ -44,7 +44,7 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
 
         public void TakeDamge_WhenDamageIs0_HealthRemainsTheSame()
         {
-            Enemy newEnemy = new Enemy();
+            Enemy newEnemy = new Enemy("Stefano", CharacterValidator.MaxHealth);
 
             newEnemy.TakeDamage(0);
 
@@ -56,7 +56,7 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
 
         public void TakeDamage_WhenDamageIs10_HealthGoesDownTo90()
         {
-            Enemy newEnemy = new Enemy();
+            Enemy newEnemy = new Enemy("Stefano", CharacterValidator.MaxHealth);
 
             newEnemy.TakeDamage(10);
 
@@ -68,7 +68,7 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
 
         public void TakeDamage_WhenDamageIsHigherThanHealth_EnemyDies()
         {
-            Enemy newEnemy = new Enemy();
+            Enemy newEnemy = new Enemy("Stefano", CharacterValidator.MaxHealth);
 
             newEnemy.TakeDamage(101);
 
