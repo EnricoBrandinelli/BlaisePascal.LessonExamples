@@ -77,9 +77,57 @@ namespace BlaisePascal.LessonExamples.Domain.UnitTest
 
         }
 
-        
+        [Fact]
 
-     
+        public void Heal_WhenHealthIs40AndAmountIs30_HealthBecomes70()
+        {
+            Enemy newEnemy = new Enemy("Stefano", 40);
+
+            newEnemy.Heal(30);
+
+            Assert.Equal(70, newEnemy.Health);
+
+        }
+
+        [Fact]
+
+        public void Heal_WhenAmountIsNegative_ThrowArgumentException()
+        {
+            Enemy newEnemy = new Enemy("Stefano", 40);
+
+            int amount = -1;
+
+            Assert.Throws<ArgumentException>(() => newEnemy.Heal(amount));
+
+        }
+
+        [Fact]
+
+        public void Heal_IsAliveIsFalse_ThrowArgumentException()
+        {
+            Enemy newEnemy = new Enemy("Stefano", 0);
+
+            int amount = 30;
+
+            Assert.Throws<ArgumentException>(() => newEnemy.Heal(amount));
+
+            
+
+        }
+
+        [Fact]
+
+        public void Heal_WhenHealthPlusAmountIsHigherThanMaxHealth_HealthBecomesMaxHealth()
+        {
+            Enemy newEnemy = new Enemy("Stefano", 40);
+
+            newEnemy.Heal(70);
+
+            Assert.Equal(CharacterValidator.MaxHealth, newEnemy.Health);
+
+        }
+
+
 
 
 
